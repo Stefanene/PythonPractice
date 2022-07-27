@@ -7,6 +7,18 @@ import CmdProcessor as cp
 if __name__ == "__main__":
     print("This is Wordle helper!")
     cmdProcessor = cp.CmdProcessor()
+
+    # read the .txt file and add words to dictionary structure
+    with open('words.txt') as f:
+        intext = f.read()
+    lines = intext.split('\n')
+    myDict = {}  # initialize empty dictionary
+    for l in lines:
+        wordnval = l.split()
+        myDict[wordnval[0]] = int(wordnval[1])
+    print(f"  == Successfully loaded {len(myDict)} words into the dictionary structure.")
+
+    #begin wordle program
     line = input("Command?> ").lower()
     while(line != "quit" and line != "exit"):
         if line == "?" or line == "help":
@@ -27,3 +39,5 @@ if __name__ == "__main__":
             print("#Error: Command not recognized")
         line = input("Command?> ").lower()
     print("Goodbye!")
+
+
